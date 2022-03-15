@@ -1,0 +1,65 @@
+﻿@model Business.Interop.Data.GarageOrderModels.OrderDetailsDto
+   
+@{
+    ViewData["Title"] = "Order details";
+}
+
+<div class="content">
+    <div class="d-flex justify-content-between mb-2">
+        <a class="btn btn-outline-info btn-sm" asp-action="Index">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 1 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+            <span class="oi oi-arrow-thick-left"></span> Назад
+        </a>
+    </div>
+    <table class="table table-borderless">
+        <tbody>
+            <tr>
+                <td>
+                    <b>@Html.DisplayNameFor(model => model.ClientCar.Client)</b>
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(model => model.ClientCar.Client.FullName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   <b> @Html.DisplayNameFor(model => model.ClientCar.Car)</b>
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(model => model.ClientCar.Car.ManufactureYear)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Work
+            </th>
+            <th>
+                Mechanic
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Sum
+            </th>
+        </tr>
+    </thead>
+        <tbody>
+            @foreach (var position in Model.Positions)
+            {
+                <tr>
+                    <td>@position.Work.Name</td>
+                    <td>@position.Mechanic.Name</td>
+                    <td>@position.Count</td>
+                    <td>@(@position.Count * @position.Work.Price)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

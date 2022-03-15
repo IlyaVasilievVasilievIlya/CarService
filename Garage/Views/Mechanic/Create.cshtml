@@ -1,0 +1,51 @@
+﻿@model Business.Interop.Data.MechanicDto
+@{
+    ViewData["Title"] = "Create mechanic";
+}
+
+<div class="content">
+    <div class="mb-2">
+        <a class="btn btn-outline-info btn-sm" asp-action="Index">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 1 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+            <span class="oi oi-arrow-thick-left"></span> Назад
+        </a>
+    </div>
+    <form asp-action="Create" asp-controller="Mechanic">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" maxlength="100" placeholder="ФИО" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input type="tel" asp-for="PhoneNumber" class="form-control" maxlength="100" placeholder="012-345-67-89"/>
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input type="email" asp-for="Email" class="form-control" maxlength="100" placeholder="example@test.com"/>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BirthDate" class="control-label"></label>
+            <input type="date" min="1925-01-01" max="2022-01-20" value="2000-01-01" asp-for="BirthDate" class="form-control"/>
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="WorkScope" class="control-label"></label>
+            <select asp-for="WorkScopeId" autocomplete="true" class="selectpicker form-control" asp-items="ViewBag.WorkScopeIds">
+            </select>
+            <span asp-validation-for="WorkScopeId" class="text-danger"></span>
+        </div>
+        <div class="text-right">
+            <input type="submit" value="Create" class="btn btn-primary w-25" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

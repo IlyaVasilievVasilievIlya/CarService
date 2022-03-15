@@ -1,0 +1,55 @@
+﻿@model Business.Interop.Data.WorkDto
+
+@{
+    ViewData["Title"] = "Создание услуги";
+}
+
+<div class="content">
+    <div class="mb-2">
+        <a class="btn btn-outline-info btn-sm" asp-action="Index">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 1 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+            <span class="oi oi-arrow-thick-left"></span> Назад
+        </a>
+    </div>
+        <form asp-action="Create" asp-controller="Work">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" maxlength="100" placeholder="Название услуги" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" input="number" asp-antiforgery="true" class="form-control" placeholder="Стоимость"/>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkType" class="control-label"></label>
+                <select asp-antiforgery="true" data-live-search="true" autocomplete="true" asp-for="WorkTypeId" class="form-control" asp-items="ViewBag.WorkTypeIds">
+                    <option selected="selected" value=""></option>
+                </select>
+                <span asp-validation-for="WorkTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label"></label>
+                <input asp-for="Duration"  asp-antiforgery="true" class="form-control" placeholder="Длительность работы" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" rows="5" class="form-control" placeholder="Описание"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="text-right">
+                <input type="submit" value="Create" class="btn btn-primary w-25" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
