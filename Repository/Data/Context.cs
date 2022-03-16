@@ -1,5 +1,6 @@
 ﻿using Business.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Repository.Data
 {
@@ -15,8 +16,28 @@ namespace Repository.Data
 		public DbSet<Car> Cars { get; set; }
 		public DbSet<ClientCar> ClientCars { get; set; }
 
-		public Context() : base() { }
+		public Context() : base() {
+			Database.EnsureDeleted();
+			Database.EnsureCreated();
+		}
 
-		public Context(DbContextOptions<Context> options) : base(options) { }
+		public Context(DbContextOptions<Context> options) : base(options) {
+			Database.EnsureDeleted();
+			Database.EnsureCreated();
+		}
+
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			foreach (var rel in modelBuilder.Model
+				.GetEntityTypes()
+				.Where(e => !e.IsOwned())
+				.SelectMany(e => e.GetForeignKeys()))
+			{
+				rel.DeleteBehavior = DeleteBehavior.Restrict;
+			}
+
+			base.OnModelCreating(modelBuilder);
+		}
 	}
 }

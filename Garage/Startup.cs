@@ -43,7 +43,7 @@ namespace Garage
 
             services.AddDbContext<Context>(
                 options => options
-                    .UseNpgsql(_configuration.GetConnectionString("DefaultConnection"),
+                    .UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("Repository")),
                 contextLifetime: ServiceLifetime.Singleton,
                 optionsLifetime: ServiceLifetime.Transient);
@@ -79,7 +79,7 @@ namespace Garage
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Context db)
         {
-            db.Database.Migrate();
+            //db.Database.Migrate();
 
             if (env.IsDevelopment())
             {
