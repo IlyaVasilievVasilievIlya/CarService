@@ -10,6 +10,8 @@ namespace Business.Entities
     {
         public int Id { get; set; }
         public CarModel Model { get; set; }
+
+        public int ModelId { get; set; }
         public int ManufactureYear { get; set; }
     }
 }

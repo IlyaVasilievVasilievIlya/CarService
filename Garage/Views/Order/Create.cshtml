@@ -17,17 +17,17 @@
         <form asp-action="Create">
             <div class="form-group">
                 <label asp-for="@Model.ClientCar.Client" class="control-label"></label>
-                <select asp-for="@Model.ClientCar.ClientId"  data-live-search="true" autocomplete="true" class="form-control" asp-items="ViewBag.ClientIds">
+                <select asp-for="@Model.ClientCar.ClientId"  data-live-search="true" autocomplete="true" class="form-control" >
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="@Model.ClientCar.ClientId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.ClientCar.Car" class="control-label"></label>
-                <select asp-for="@Model.ClientCar.CarId"  data-live-search="true" autocomplete="true" class="form-control">
+                <label asp-for="@Model.ClientCar" class="control-label"></label>
+                <select asp-for="@Model.ClientCarId"  data-live-search="true" autocomplete="true" class="form-control" asp-items=" ViewBag.ClientCarIds">
                     <option selected="selected" value=""></option>
                 </select>
-                <span asp-validation-for="@Model.ClientCar.CarId" class="text-danger"></span>
+                <span asp-validation-for="@Model.ClientCarId" class="text-danger"></span>
             </div>
             <div class="text-right">
                 <input type="submit" value="Create" class="btn btn-primary w-25" />
