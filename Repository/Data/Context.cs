@@ -29,13 +29,6 @@ namespace Repository.Data
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			foreach (var rel in modelBuilder.Model
-				.GetEntityTypes()
-				.Where(e => !e.IsOwned())
-				.SelectMany(e => e.GetForeignKeys()))
-			{
-				rel.DeleteBehavior = DeleteBehavior.Restrict;
-			}
 
 			ConfigureSchema(modelBuilder);
 

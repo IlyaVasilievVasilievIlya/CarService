@@ -8,7 +8,7 @@
     <div class="mb-2">
         <a class="btn btn-outline-info btn-sm" asp-action="Index">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 1 16 16">
-                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
             </svg>
             <span class="oi oi-arrow-thick-left"></span> Назад
         </a>
@@ -17,17 +17,17 @@
         <form asp-action="Create">
             <div class="form-group">
                 <label asp-for="@Model.ClientCar.Client" class="control-label"></label>
-                <select asp-for="@Model.ClientCar.ClientId"  data-live-search="true" autocomplete="true" class="form-control" >
+                <select asp-for="@Model.ClientCar.ClientId" data-live-search="true" autocomplete="true" class="form-control" asp-items="ViewBag.ClientIds">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="@Model.ClientCar.ClientId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.ClientCar" class="control-label"></label>
-                <select asp-for="@Model.ClientCarId"  data-live-search="true" autocomplete="true" class="form-control" asp-items=" ViewBag.ClientCarIds">
+                <label asp-for="@Model.ClientCar.Car" class="control-label"></label>
+                <select asp-for="@Model.ClientCar.CarId" data-live-search="true" autocomplete="true" class="form-control">
                     <option selected="selected" value=""></option>
                 </select>
-                <span asp-validation-for="@Model.ClientCarId" class="text-danger"></span>
+                <span asp-validation-for="@Model.ClientCar.CarId" class="text-danger"></span>
             </div>
             <div class="text-right">
                 <input type="submit" value="Create" class="btn btn-primary w-25" />

@@ -47,7 +47,7 @@ namespace Garage.Controllers
         {
             var model = new GarageOrderDto() { Id = 1};
 
-            ViewData["ClientIds"] = new SelectList(_clientService.GetAll().Take(1),
+            ViewData["ClientIds"] = new SelectList(_clientService.GetAll(),
                     dataValueField: nameof(ClientDto.Id),
                     dataTextField: nameof(ClientDto.FullName));
 
@@ -74,9 +74,12 @@ namespace Garage.Controllers
 
             var model = new OrderPositionDto() { Id = 0, OrderId = id, Order = order};
 
-            ViewData["WorkIds"] = new SelectList(_workService.GetAll().Take(2),
+            ViewData["WorkIds"] = new SelectList(_workService.GetAll(),
                     dataValueField: nameof(WorkDto.Id),
                     dataTextField: nameof(WorkDto.Name));
+            ViewData["MechanicIds"] = new SelectList(_mechanicService.GetAll(),
+                    dataValueField: nameof(MechanicDto.Id),
+                    dataTextField: nameof(MechanicDto.Name));
 
             return View(model);
         }
